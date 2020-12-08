@@ -9,12 +9,17 @@
 //
 // };
 exports.cors = {
-  enable: true,
-  package: 'egg-cors',
+    enable: true,
+    package: 'egg-cors',
 };
 
-exports.mysql={
+exports.mysql = {
     enable: true,
     package: 'egg-mysql'
-  }
+};
+
+exports.jwt = {
+    enable: true,
+    package: 'egg-jwt',
+}
 

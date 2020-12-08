@@ -43,6 +43,7 @@ export function deleteOne(id) {
     })
 }
 
+//级联选择
 export function selectDate() {
     return request({
         url: '/select',
@@ -86,14 +87,31 @@ export function selectCity(fjzj) {
 //   })
 // }
 
+//上传
 export function uploadOne(formData) {
-
     return request({
-        url: '/egg/fileupload',
+        url: '/upload',
         method: 'POST',
         data: formData
+    })
+}
 
+//下载
+export function download(filename) {
+    console.log(filename + '==========')
+    return request({
+        url: '/download',
+        method: 'get',
+        params: {filename}
+    })
+}
 
+//登录
+export function loginIn(params) {
+    return request({
+        url: '/login',
+        method: 'POST',
+        data: params
     })
 }
 

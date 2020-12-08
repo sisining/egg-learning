@@ -10,11 +10,13 @@
     "await-stream-ready": "^1.0.1",
     "egg": "^2.29.1",
     "egg-cors": "^2.2.3",
+    "egg-jwt": "^3.1.7",
     "egg-mysql": "^3.0.0",
     "egg-scripts": "^2.11.0",
     "egg-sequelize": "^6.0.0",
     "iview": "^3.5.4",
     "mysql2": "^2.2.5",
+    "mz": "^2.7.0",
     "sequelize": "^6.3.5"
   },
   "devDependencies": {
@@ -27,6 +29,7 @@
     "eslint": "^5.13.0",
     "eslint-config-egg": "^7.1.0",
     "stream-wormhole": "^1.1.0",
+    "utility": "^1.16.3",
     "vue-router": "^3.4.9",
     "vuex": "^3.6.0"
   },

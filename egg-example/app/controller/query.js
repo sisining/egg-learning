@@ -36,6 +36,7 @@ class QueryController extends Service {
     // 添加数据
     // 添加了一个name:5545,age:33的数据
     const { id, name, age } = this.ctx.request.body;// Post
+    console.log(name)
     const result = await sequelize.query('insert into test1 (id,name,age) values (:id,:name,:age)', {
       replacements: { id, name, age },
       type: sequelize.QueryTypes.INSERT,

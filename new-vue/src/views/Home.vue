@@ -1,6 +1,76 @@
 <template slot-scope="scope">
     <div class="home">
 
+
+        <div>
+            <h2>数据：</h2>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">#id</th>
+                                <th scope="col">name</th>
+                                <th scope="col">age</th>
+                                <th scope="col">operation</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="(item,index) in allData">
+                                <th scope="row">{{item.id}}</th>
+                                <td>{{item.name}}</td>
+                                <td>{{item.age}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" @click="findOne(index)">更新</button>
+                                    <button type="button" class="btn btn-danger" @click="deleteOne(index)">删除</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+<!--            <el-table-->
+<!--                    :data="allData"-->
+<!--                    border-->
+<!--                    style="width: 100%">-->
+<!--                <el-table-column-->
+<!--                        fixed-->
+<!--                        prop="id"-->
+<!--                        label="#id"-->
+<!--                        width="200">-->
+<!--                </el-table-column>-->
+<!--                <el-table-column-->
+<!--                        prop="name"-->
+<!--                        label="姓名"-->
+<!--                        width="200">-->
+<!--                </el-table-column>-->
+
+<!--                <el-table-column-->
+<!--                        prop="age"-->
+<!--                        label="年龄"-->
+<!--                        width="200">-->
+<!--                </el-table-column>-->
+
+<!--                <el-table-column-->
+<!--                        prop=""-->
+<!--                        fixed="right"-->
+<!--                        label="操作">-->
+<!--                 235463465-->
+<!--                </el-table-column>-->
+<!--            </el-table>-->
+
+
+<!--            <div class="block">-->
+<!--                <span class="demonstration"></span>-->
+<!--                <el-pagination-->
+<!--                        @size-change="handleSizeChange"-->
+<!--                        @current-change="handleCurrentChange"-->
+<!--                        :current-page="currentPage"-->
+<!--                        :page-sizes="[5,10,15,20,50,100]"-->
+<!--                        :page-size="5"-->
+<!--                        layout="total, sizes, prev, pager, next, jumper"-->
+<!--                        :total="400">-->
+<!--                </el-pagination>-->
+<!--            </div>-->
+        </div>
+
         <h2>添加/更新</h2>
         <div class="container">
             <form :model="allObj">
@@ -24,34 +94,6 @@
             </form>
 
         </div>
-
-        <h2>数据：</h2>
-        <!--        {{allData}}-->
-        <!--        <ul v-for="(item,index) in allData">-->
-        <!--            <li>{{item}}</li>-->
-        <!--            <button @click="deleteOne(index)">删除</button>-->
-        <!--        </ul>-->
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#id</th>
-                <th scope="col">name</th>
-                <th scope="col">age</th>
-                <th scope="col">operation</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="(item,index) in allData">
-                <th scope="row">{{item.id}}</th>
-                <td>{{item.name}}</td>
-                <td>{{item.age}}</td>
-                <td>
-                    <button type="button" class="btn btn-primary" @click="findOne(index)">更新</button>
-                    <button type="button" class="btn btn-danger" @click="deleteOne(index)">删除</button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
     </div>
 </template>
 
@@ -61,78 +103,29 @@
 
     export default {
         name: "Home",
-        // props: {
-        //     allData: {
-        //         type: Array,
-        //     },
-        // },
+        // props: {},
 
         data() {
             return {
                 allData: [],
-                all: [],
-                // columns: [
-                //     {
-                //         title: '#id',
-                //         key: 'id'
-                //     },
-                //     {
-                //         title: '姓名',
-                //         key: 'name'
-                //     }, {
-                //         title: '年龄',
-                //         key: 'age'
-                //     },
-                //     {
-                //         title: 'Action',
-                //         slot: 'action',
-                //         width: 150,
-                //         align: 'center'
-                //     }
-                // ]
                 allObj: {
                     id: '',
                     name: '',
                     age: ''
-                }
+                },
+
+                currentPage: 1
             }
         },
         mounted() {
             this.getDate()
 
         },
-        updated() {
-            // this.createOne()
-            // this.getAll()
-        },
-        methods: {
-            // ...mapActions({
-            //     getAllNew: "getAll",
-            //     addOneNew: 'addOne',
-            //     updateThoseNew: 'updateThose',
-            //     deleteThoseNew: 'deleteThose'
-            // }),
 
-            // async getAll() {
-            //     const res = await this.getAllNew()
-            //     console.log(res)
-            //     console.log('13123')
-            //     if (res.code === 0) {
-            //         this.all = res.data
-            //     }
-            // },
-            // async addOne() {
-            //     console.log(12465476547)
-            //     const res = await this.addOneNew({
-            //         name: this.allObj.name,
-            //         age: this.allObj.age
-            //     })
-            //     if (res.code === 0) {
-            //         this.allObj.name = '',
-            //             this.allObj.age = ''
-            //         this.getDate()
-            //     }
-            // },
+        methods: {
+            handleClick(row) {
+                console.log(row);
+            },
 
             getDate() {
                 getDate().then(res => {
@@ -144,17 +137,6 @@
             },
 
             async addOne() {
-                // this.addOneNew({
-                //     name: this.allObj.name,
-                //     age: this.allObj.age
-                // })
-                // console.log(325235)
-                // const name = this.allObj.name;
-                // const age = this.allObj.age;
-                // createOne(name, age).then(res => {
-                //     this.getDate()
-                //     console.log(res)
-                // })
                 const id = this.allObj.id
                 const name = this.allObj.name
                 const age = this.allObj.age
@@ -168,10 +150,11 @@
 
             //按下标查询更新
             async findOne(index) {
-                console.log(this.allData[index].id)
-                this.allObj.id = this.allData[index].id
-                this.allObj.name = this.allData[index].name
-                this.allObj.age = this.allData[index].age
+                console.log(index)
+                // console.log(this.allData[index].id)
+                // this.allObj.id = this.allData[index].id
+                // this.allObj.name = this.allData[index].name
+                // this.allObj.age = this.allData[index].age
                 // const res=await findOne(id).then(res=>{
                 //   console.log(res)
                 // })
@@ -197,6 +180,17 @@
                 })
 
             },
+            // 分页
+            page() {
+
+            },
+            //分页
+            handleSizeChange(val) {
+                console.log(`每页 ${val} 条`);
+            },
+            handleCurrentChange(val) {
+                console.log(`当前页: ${val}`);
+            }
         }
     }
 </script>

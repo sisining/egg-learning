@@ -21,6 +21,21 @@ module.exports = appInfo => {
         ctoken: false,
     };
 
+    config.jwt = {
+        secret: '123456',
+        enable: true, // default is false
+        match: '/jwt', // optional
+        expiresIn: '24h'
+    };
+
+    // config.jwt = {
+    //     secret: 'egg-api-jwt',
+    // };
+    //
+    // config.middleware = [
+    //     'jwt',
+    // ];
+
     config.cors = {
         // origin: '*', // 允许所有跨域访问，注释掉则允许上面 白名单 访问
         credentials: true, // 允许跨域请求携带cookies
@@ -28,27 +43,38 @@ module.exports = appInfo => {
         allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
     };
 
+    const whitelist = [
+        // images
+        '.jpg', '.jpeg', // image/jpeg
+        '.png', // image/png, image/x-png
+        '.gif', // image/gif
+        '.bmp', // image/bmp
+        '.wbmp', // image/vnd.wap.wbmp
+        '.webp',
+        '.tif',
+        '.psd',
+        // text
+        '.svg',
+        '.js', '.jsx',
+        '.json',
+        '.css', '.less',
+        '.html', '.htm',
+        '.xml',
+        // tar
+        '.zip',
+        '.gz', '.tgz', '.gzip',
+        // video
+        '.mp3',
+        '.mp4',
+        '.avi',
+        '.docx'
+    ];
+
     config.multipart = {
-
         // mode: 'file',
-
-        fileExtensions: ['.docx'],
-
+        fileSize: '50mb',
+        fileExtensions: ['.docx', '.jpg', '.text', '.png'],
     }
-
-    // config.sequelize = {
-    //   dialect: 'mysql',
-    //   host: '127.0.0.1',
-    //   port: '3306',
-    //   user: 'root', // 用户名
-    //   password: 'root', // 用户密码
-    //   database: 'test', // 数据库名
-    //   define: {
-    //     underscored: true,
-    //     freezeTableName: true,
-    //   },
-    // };
-
     // add your user config here
     const userConfig = {
         // myAppName: 'egg',

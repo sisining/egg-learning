@@ -11,5 +11,8 @@ import 'bootstrap/dist/js/bootstrap'
 // import 'iview/dist/styles/iview.css';
 import ElementPlus from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
+import {AxiosInstance as Axios} from "axios";
 
 createApp(App).use(store).use(router).use(Bootstrap).use(ElementPlus).mount('#app')
+
+Axios.defaults.headers.common['i-token'] = store.state.token;
