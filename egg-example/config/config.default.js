@@ -25,7 +25,7 @@ module.exports = appInfo => {
         secret: '123456',
         enable: true, // default is false
         match: '/jwt', // optional
-        expiresIn: '24h'
+        expiresIn: '10s'
     };
 
     // config.jwt = {

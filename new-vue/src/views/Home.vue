@@ -1,74 +1,32 @@
 <template slot-scope="scope">
+
     <div class="home">
 
 
         <div>
             <h2>数据：</h2>
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">#id</th>
-                                <th scope="col">name</th>
-                                <th scope="col">age</th>
-                                <th scope="col">operation</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr v-for="(item,index) in allData">
-                                <th scope="row">{{item.id}}</th>
-                                <td>{{item.name}}</td>
-                                <td>{{item.age}}</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" @click="findOne(index)">更新</button>
-                                    <button type="button" class="btn btn-danger" @click="deleteOne(index)">删除</button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#id</th>
+                    <th scope="col">name</th>
+                    <th scope="col">age</th>
+                    <th scope="col">operation</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(item,index) in allData">
+                    <th scope="row">{{item.id}}</th>
+                    <td>{{item.name}}</td>
+                    <td>{{item.age}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" @click="findOne(index)">更新</button>
+                        <button type="button" class="btn btn-danger" @click="deleteOne(index)">删除</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
 
-<!--            <el-table-->
-<!--                    :data="allData"-->
-<!--                    border-->
-<!--                    style="width: 100%">-->
-<!--                <el-table-column-->
-<!--                        fixed-->
-<!--                        prop="id"-->
-<!--                        label="#id"-->
-<!--                        width="200">-->
-<!--                </el-table-column>-->
-<!--                <el-table-column-->
-<!--                        prop="name"-->
-<!--                        label="姓名"-->
-<!--                        width="200">-->
-<!--                </el-table-column>-->
-
-<!--                <el-table-column-->
-<!--                        prop="age"-->
-<!--                        label="年龄"-->
-<!--                        width="200">-->
-<!--                </el-table-column>-->
-
-<!--                <el-table-column-->
-<!--                        prop=""-->
-<!--                        fixed="right"-->
-<!--                        label="操作">-->
-<!--                 235463465-->
-<!--                </el-table-column>-->
-<!--            </el-table>-->
-
-
-<!--            <div class="block">-->
-<!--                <span class="demonstration"></span>-->
-<!--                <el-pagination-->
-<!--                        @size-change="handleSizeChange"-->
-<!--                        @current-change="handleCurrentChange"-->
-<!--                        :current-page="currentPage"-->
-<!--                        :page-sizes="[5,10,15,20,50,100]"-->
-<!--                        :page-size="5"-->
-<!--                        layout="total, sizes, prev, pager, next, jumper"-->
-<!--                        :total="400">-->
-<!--                </el-pagination>-->
-<!--            </div>-->
         </div>
 
         <h2>添加/更新</h2>
@@ -129,8 +87,8 @@
 
             getDate() {
                 getDate().then(res => {
-                    console.log(res[0])
-                    this.allData = res[0]
+                    console.log(res.data[0])
+                    this.allData = res.data[0]
                     console.log('56788')
                 })
 

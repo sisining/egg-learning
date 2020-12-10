@@ -15,4 +15,4 @@ import {AxiosInstance as Axios} from "axios";
 
 createApp(App).use(store).use(router).use(Bootstrap).use(ElementPlus).mount('#app')
 
-Axios.defaults.headers.common['i-token'] = store.state.token;
+// Axios.defaults.headers.common['i-token'] = store.state.token;

@@ -27,20 +27,22 @@ class LoginController extends Controller {
             replacements: {name, password},
             type: sequelize.QueryTypes.SELECT,
         });
-
+        console.log('admin')
+        console.log(user[0].admin)
         if (user != '') {
             let obj = {
-                name: user.name,
+                name: user[0].name,
                 //密码加密
-                password: user.password
+                password: user[0].password
             }
-             const { jwt: { secret, expiresIn } } = app.config;
+            console.log(obj)
+            const {jwt: {secret, expiresIn}} = app.config;
             let token = app.jwt.sign(obj, secret, {expiresIn})
+            console.log(token)
             ctx.body = {code: 0, data: user, token}
             return true;
         } else {
-
-            ctx.body = {code: 0, data: user, msg: '失败'};
+            ctx.body = {code: 10010, data: user, msg: '失败'};
         }
 
         console.log(user)
@@ -49,3 +51,4 @@ class LoginController extends Controller {
 }
 
 module.exports = LoginController;
+
